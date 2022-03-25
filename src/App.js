@@ -6,7 +6,7 @@ import Header from './containers/Header';
 import routes from './containers/routes';
 
 function App() {
-  const user = null
+  const user = true
 
   if(user){
     return (
