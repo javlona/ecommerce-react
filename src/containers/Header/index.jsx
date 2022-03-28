@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { BiSearch } from 'react-icons/bi'
+import { BiSearch, BiCartAlt } from 'react-icons/bi'
 import Button from '../../components/Button'
 import HeaderSty from './style'
 
@@ -19,7 +19,7 @@ function Header() {
       </div>
       <div className="header__nav">
         <div className="header__nav-logo">
-          Online Store
+          online store
         </div>
         <div className="header__nav-links">
           <Link to='/'>HOME</Link>

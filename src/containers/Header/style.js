@@ -24,6 +24,37 @@ const HeaderSty = sty.div`
             padding: 0 10px;
         }
     }
+
+    .header__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 50px 30px 100px;
+        &-logo {
+            color: ${color.primary};
+            font-size: 24px;
+            font-weight: 500;
+        }
+        &-links {
+
+            a {
+                padding-left: 20px;
+                padding-right: 20px;
+                border-right: 1px solid ${color.title};
+                color: ${color.title};
+                &:hover {
+                    color: ${color.activeLink};
+                }
+            }
+
+            a:last-child { 
+                border-right: none;
+            }
+        }
+        &-actions {
+            
+        }
+    }
 `
 
 export default HeaderSty;
