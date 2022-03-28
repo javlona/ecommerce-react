@@ -52,7 +52,8 @@ const HeaderSty = sty.div`
             }
         }
         &-actions {
-            
+            display: flex;
+            gap: 20px;
         }
     }
 `

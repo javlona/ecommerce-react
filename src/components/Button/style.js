@@ -17,7 +17,14 @@ const Container = sty.button`
       };
       return type[props.type];
     }}
+    .btn__data {
+            padding-left: 7px;
+            padding-right: 2px;
+    }
+    .btn__icon {
+            vertical-align: middle;
+    }
     
-`;
+`
 
 export default Container;
