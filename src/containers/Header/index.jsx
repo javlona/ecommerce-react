@@ -2,12 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { BiSearch } from 'react-icons/bi'
 import Button from '../../components/Button'
+import HeaderSty from './style'
 
 function Header() {
   const user = true
 
   return (
-    <div className="header">
+    <HeaderSty>
       <div className="header__top">
         <h3>Free Delivery</h3>
         <div className="header__top-links">
@@ -31,10 +32,10 @@ function Header() {
             <input className="header__input" type="search" placeholder="Search"/>
             <button className="header__search-button"><BiSearch /></button>
           </form>
-          <Button title='Checkout' type='primary'/>
+          <Button title='Checkout' type='secondary'/>
         </div>
       </div>
-    </div>
+    </HeaderSty>
   )
 }
 

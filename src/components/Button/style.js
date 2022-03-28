@@ -1,39 +1,23 @@
-import sty from 'styled-components'
-import color from '../../utils/color'
+import sty from "styled-components";
+import color from "../../utils/color";
 
 const Container = sty.button`
     ${(props) => {
-        const type = {
-            primary: `color: red;`,
-            secondary: `color: black`,
-        }
-        return type[props.type]
-        let a = `
-            font-size: 22px;
-            color: white;
-        `
-        let btn = null;
-        switch (props.type) {
-            case 'primary':
-                btn = `
-                background: red;
-                color: white;
-                font-size: 32px;
-                `
-                break;
-            case 'secondary':
-                btn = `background: transparent;`
-                break;
-            default: 
-                btn = `background: black;`
-        }
-        console.log(a+btn, 'styleeeee');
-        return a + btn
+      const type = {
+        primary: `
+                color: white; 
+                background: ${color.primary};`,
+        secondary: `
+                color: white; 
+                background: ${color.secondary};`,
+        transparent: `
+                color: ${color.secondary}; 
+                background: transparent;
+                border: 1.5px solid ${color.secondary};`,
+      };
+      return type[props.type];
     }}
+    
+`;
 
-`
-
-// background: ${(props) => props.type ? props.bg : color.secondary };
-// color: ${(props) => props.color ? props.color : color.secondary };
-
-export default Container
+export default Container;
