@@ -10,11 +10,11 @@ function Header() {
   return (
     <HeaderSty>
       <div className="header__top">
-        <h3>Free Delivery</h3>
+        <h3 className='header__top-msg'>Free Delivery</h3>
         <div className="header__top-links">
           {(user) ? <Link to={'/profile'}>My profile</Link> : <Link to={'/sign-in'}>Sign in</Link>}
-          <div>Language</div>
-          <div>USD</div>
+          <div className='header__top-lang'>Language</div>
+          <div className='header__top-currency'>USD</div>
         </div>
       </div>
       <div className="header__nav">
