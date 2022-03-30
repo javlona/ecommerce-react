@@ -66,15 +66,8 @@ export const authSlice = createSlice({
   },
 });
 
-export const { increment, decrement, incrementByAmount } = authSlice.actions;
+export const { logout } = authSlice.actions;
 
 export const selectAuth = (state) => state.user;
-
-export const incrementIfOdd = (amount) => (dispatch, getState) => {
-  const currentValue = selectCount(getState());
-  if (currentValue % 2 === 1) {
-    dispatch(incrementByAmount(amount));
-  }
-};
 
 export default authSlice.reducer;
