@@ -18,6 +18,12 @@ const HomeSty = sty.div`
             padding-top: 40px;
         }
     }
+    .features {
+        display: flex;
+        &__card {
+            display: flex;
+        }
+    }
 `
 
 export default HomeSty;
