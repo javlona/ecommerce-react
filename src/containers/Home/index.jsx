@@ -1,11 +1,12 @@
 import React from "react";
 import Button from "../../components/Button";
 import Deals from "../../components/Deals";
+import { Wrapper } from "../../style";
 import HomeSty from "./style";
 
 function Home() {
   return (
-    <>
+    <Wrapper>
       <HomeSty>
         <div className="home__heading">
           <h4 className="home__heading--small">TOP TRENDING</h4>
@@ -92,7 +93,7 @@ function Home() {
           </div>
         </div>
       </div>
-    </>
+    </Wrapper>
   );
 }
 

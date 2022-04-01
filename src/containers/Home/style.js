@@ -5,7 +5,7 @@ const HomeSty = sty.div`
     background: ${color.text};
     height: 500px;
     text-align: left;
-    padding: 20px 50px 20px 100px;
+    
     .home__heading {
         &--big {
             font-size: 70px;
@@ -25,5 +25,5 @@ const HomeSty = sty.div`
         }
     }
 `
-
+//padding: 20px 50px 20px 100px;
 export default HomeSty;

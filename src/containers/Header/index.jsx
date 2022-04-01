@@ -4,6 +4,7 @@ import { BiSearch, BiCartAlt } from "react-icons/bi";
 import Button from "../../components/Button";
 import HeaderSty from "./style";
 import Input from "../../components/Input";
+import { Wrapper } from "../../style";
 
 function Header() {
   const user = true;
@@ -12,16 +13,18 @@ function Header() {
   return (
     <HeaderSty>
       <div className="header__top">
-        <h3 className="header__top-msg">Free Delivery</h3>
-        <div className="header__top-links">
-          {user ? (
-            <Link to={"/profile"}>My profile</Link>
-          ) : (
-            <Link to={"/sign-in"}>Sign in</Link>
-          )}
-          <div className="header__top-lang">Language</div>
-          <div className="header__top-currency">USD</div>
-        </div>
+        <Wrapper display='flex' jc='space-between' ai='center'>
+          <h3 className="header__top-msg">Free Delivery</h3>
+          <div className="header__top-links">
+            {user ? (
+              <Link to={"/profile"}>My profile</Link>
+            ) : (
+              <Link to={"/sign-in"}>Sign in</Link>
+            )}
+            <div className="header__top-lang">Language</div>
+            <div className="header__top-currency">USD</div>
+          </div>
+        </Wrapper>
       </div>
       <div className="header__nav">
         <div className="header__nav-logo">online store</div>
@@ -43,11 +46,12 @@ function Header() {
               <BiSearch />
             </button>
           </form>
-          <Button 
-              title="item(s)" 
-              type="secondary" 
-              icon={<BiCartAlt />}
-              data={cartItems}/>
+          <Button
+            title="item(s)"
+            type="secondary"
+            icon={<BiCartAlt />}
+            data={cartItems}
+          />
         </div>
       </div>
     </HeaderSty>

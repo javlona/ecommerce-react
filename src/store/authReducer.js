@@ -10,7 +10,7 @@ const initialState = {
 
 export const authSignUp = createAsyncThunk('auth/signUp', async (data, { rejectWithValue }) => {
   try {
-    const response = await axios.post('/sign-up', data);
+    const response = await axios.post('/auth/sign-up', data);
     console.log(response);
     return response.data;
   } catch (error) {
@@ -20,7 +20,7 @@ export const authSignUp = createAsyncThunk('auth/signUp', async (data, { rejectW
 
 export const authSignIn = createAsyncThunk('auth/signIn', async (data, { rejectWithValue }) => {
   try {
-    const response = await axios.post('/sign-in', data);
+    const response = await axios.post('/auth/sign-in', data);
     console.log(response);
     return response.data;
   } catch (error) {
