@@ -2,11 +2,15 @@ import React from 'react'
 import { Form, Input, Button, Checkbox } from "antd";
 import './style.css';
 import { Link } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { authSignUp } from '../../store/authReducer';
 
-function signUp() {
+function SignUp() {
+  const dispatch = useDispatch();
 
   const onFinish = values => {
-    console.log("Received values of form: ", values);
+    dispatch(authSignUp(values));
+    
   };
 
   const onFinishFailed = errorInfo => {
@@ -104,4 +108,4 @@ function signUp() {
   )
 }
 
-export default signUp
+export default SignUp

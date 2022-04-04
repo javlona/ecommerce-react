@@ -10,7 +10,7 @@ const initialState = {
 
 export const authSignUp = createAsyncThunk('auth/signUp', async (data, { rejectWithValue }) => {
   try {
-    const response = await axios.post('/signup', data);
+    const response = await axios.post('/auth/sign-up', data);
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response.data);
@@ -19,7 +19,7 @@ export const authSignUp = createAsyncThunk('auth/signUp', async (data, { rejectW
 
 export const authSignIn = createAsyncThunk('auth/signIn', async (data, { rejectWithValue }) => {
   try {
-    const response = await axios.post('/login', data);
+    const response = await axios.post('/auth/sign-in', data);
     return response.data;
   } catch (error) {
     return rejectWithValue(error.response.data);
@@ -37,12 +37,12 @@ export const authSlice = createSlice({
  
   extraReducers: (builder) => {
     builder
-      .addCase(authSignUp.pending, (state,action) => {
+      .addCase(authSignUp.pending, (state) => {
         state.isLoading = true;
       })
       .addCase(authSignUp.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.user = action.payload.payload;
         state.token = action.payload.token;
       })
       .addCase(authSignUp.rejected, (state, action) => {
@@ -54,7 +54,7 @@ export const authSlice = createSlice({
       })
       .addCase(authSignIn.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.user = action.payload.payload;
         state.token = action.payload.token;
       })
       .addCase(authSignIn.rejected, (state, action) => {

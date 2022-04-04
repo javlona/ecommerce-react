@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react';
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router';
 import './App.css';
 import Footer from './containers/Footer';
@@ -6,7 +7,7 @@ import Header from './containers/Header';
 import routes from './containers/routes';
 
 function App() {
-  const user = false;
+  const user = useSelector((state) => state.auth.token);
 
   if(user){
     return (

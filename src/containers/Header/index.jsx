@@ -1,14 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BiSearch, BiCartAlt } from "react-icons/bi";
+import { CgProfile } from 'react-icons/cg'
+import { Menu, Dropdown, Button as Btn } from 'antd';
 import Button from "../../components/Button";
 import HeaderSty from "./style";
 import Input from "../../components/Input";
 import { Wrapper } from "../../style";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../../store/authReducer";
 
 function Header() {
-  const user = true;
+  const user = useSelector(state => state.auth.token);
   const cartItems = 2;
+
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <Link to={"/profile"}>My profile</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <p onClick={logoutHandler}>Logout</p>
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
     <HeaderSty>
@@ -17,7 +38,9 @@ function Header() {
           <h3 className="header__top-msg">Free Delivery</h3>
           <div className="header__top-links">
             {user ? (
-              <Link to={"/profile"}>My profile</Link>
+              <Dropdown overlay={menu} placement="bottom" arrow>
+                <Btn><CgProfile /></Btn>
+              </Dropdown>
             ) : (
               <Link to={"/sign-in"}>Sign in</Link>
             )}

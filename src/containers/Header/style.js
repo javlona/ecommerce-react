@@ -10,6 +10,7 @@ const HeaderSty = sty.div`
         &-links {
             display: flex;
             gap: 10px;
+            align-items: center;
         }
         &-msg {
             font-size: 14px;

@@ -2,10 +2,12 @@ import sty from "styled-components";
 import color from "../../utils/color";
 
 const HomeSty = sty.div`
-    background: ${color.text};
-    height: 500px;
     text-align: left;
-    
+    .home__hero {
+        background: ${color.text};
+        height: 500px;
+        
+    }
     .home__heading {
         &--big {
             font-size: 70px;

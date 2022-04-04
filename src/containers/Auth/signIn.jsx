@@ -2,10 +2,14 @@ import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import './style.css';
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authSignIn } from "../../store/authReducer";
 
-function signIn() {
+function SignIn() {
+  const dispatch = useDispatch();
+
   const onFinish = values => {
-    console.log("Received values of form: ", values);
+    dispatch(authSignIn(values));
   };
 
   const onFinishFailed = errorInfo => {
@@ -32,12 +36,12 @@ function signIn() {
         autoComplete="off"
       >
         <Form.Item
-          label="Username"
-          name="username"
+          label="Email"
+          name="email"
           rules={[
             {
               required: true,
-              message: "Please input your username!",
+              message: "Please input your email!",
             },
           ]}
         >
@@ -58,17 +62,6 @@ function signIn() {
         </Form.Item>
 
         <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{
-            offset: 8,
-            span: 16,
-          }}
-        >
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
-
-        <Form.Item
           wrapperCol={{
             offset: 8,
             span: 16,
@@ -83,4 +76,4 @@ function signIn() {
   );
 }
 
-export default signIn;
+export default SignIn;
