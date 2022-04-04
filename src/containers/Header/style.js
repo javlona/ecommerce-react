@@ -26,7 +26,7 @@ const HeaderSty = sty.div`
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 30px 50px 30px 100px;
+        padding: 30px 0;
         &-logo {
             color: ${color.primary};
             font-size: 24px;

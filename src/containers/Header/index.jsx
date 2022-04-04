@@ -27,6 +27,7 @@ function Header() {
         </Wrapper>
       </div>
       <div className="header__nav">
+        <Wrapper display='flex' jc='space-between'>
         <div className="header__nav-logo">online store</div>
         <div className="header__nav-links">
           <Link to="/">HOME</Link>
@@ -53,6 +54,7 @@ function Header() {
             data={cartItems}
           />
         </div>
+        </Wrapper>
       </div>
     </HeaderSty>
   );

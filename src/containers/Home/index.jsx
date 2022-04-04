@@ -6,8 +6,9 @@ import HomeSty from "./style";
 
 function Home() {
   return (
-    <Wrapper>
+    <>
       <HomeSty>
+        <Wrapper>
         <div className="home__heading">
           <h4 className="home__heading--small">TOP TRENDING</h4>
           <h1 className="home__heading--big">
@@ -17,6 +18,7 @@ function Home() {
           </h1>
         </div>
         <Button title="DISCOVER NOW" type="transparent" />
+        </Wrapper>
       </HomeSty>
       <Deals />
       <div className="features">
@@ -93,7 +95,7 @@ function Home() {
           </div>
         </div>
       </div>
-    </Wrapper>
+    </>
   );
 }
 

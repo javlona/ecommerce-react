@@ -2,7 +2,7 @@ import sty from 'styled-components';
 import color from '../../utils/color';
 
 const DealSty = sty.div`
-    padding: 30px 50px 30px 100px;
+    padding: 30px 0;
     width: 100%;
     height: 600px;
     display: flex;
