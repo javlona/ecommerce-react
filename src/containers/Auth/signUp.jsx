@@ -19,7 +19,6 @@ function signUp() {
       <h3 className="sign__title">Sign up</h3>
       <p>Already have an account? <Link to='/sign-in'>Sign in</Link></p>
       <Form
-        name="basic"
         labelCol={{
           span: 8,
         }}
@@ -27,19 +26,50 @@ function signUp() {
           span: 16,
         }}
         initialValues={{
-          remember: true,
+          email: "",
+          password: "",
+          name: "",
+          phone: "",
+          address: "",
+          role: "user",
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
         <Form.Item
-          label="Username"
-          name="username"
+          label="Name"
+          name="name"
           rules={[
             {
               required: true,
-              message: "Please input your username!",
+              message: "Please input your name!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Phone"
+          name="phone"
+          rules={[
+            {
+              required: true,
+              message: "Please input your phone!",
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Email"
+          name="email"
+          rules={[
+            {
+              required: true,
+              message: "Please input your email!",
             },
           ]}
         >
@@ -57,17 +87,6 @@ function signUp() {
           ]}
         >
           <Input.Password />
-        </Form.Item>
-
-        <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{
-            offset: 8,
-            span: 16,
-          }}
-        >
-          <Checkbox>Remember me</Checkbox>
         </Form.Item>
 
         <Form.Item
