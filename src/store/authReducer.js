@@ -59,7 +59,7 @@ export const authSlice = createSlice({
       })
       .addCase(authSignIn.rejected, (state, action) => {
         state.isLoading = false;
-        state.error = action.payload;
+        state.error = action.payload.msg;
       })
   },
 });

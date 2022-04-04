@@ -2,11 +2,12 @@ import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import './style.css';
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { authSignIn } from "../../store/authReducer";
 
 function SignIn() {
   const dispatch = useDispatch();
+  const hasError = useSelector(state => state.auth.error);
 
   const onFinish = values => {
     dispatch(authSignIn(values));
@@ -18,6 +19,7 @@ function SignIn() {
 
   return (
     <div className="sign">
+      {hasError && <p className="sign__error">{hasError}</p>}
       <h3 className="sign__title">Sign in</h3>
       <p>Don't have an account? <Link to='/sign-up'>Register</Link></p>
       <Form

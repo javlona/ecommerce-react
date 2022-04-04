@@ -50,8 +50,8 @@ function Header() {
         </Wrapper>
       </div>
       <div className="header__nav">
-        <Wrapper display='flex' jc='space-between'>
-        <div className="header__nav-logo">online store</div>
+        <Wrapper display='flex' jc='space-between' ai='center'>
+        <div className="header__nav-logo"><Link to='/'>online store</Link></div>
         <div className="header__nav-links">
           <Link to="/">HOME</Link>
           <Link to="/about">ABOUT US</Link>
