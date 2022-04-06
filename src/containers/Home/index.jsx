@@ -1,4 +1,5 @@
 import React from "react";
+import Arrivals from "../../components/Arrivals";
 import Button from "../../components/Button";
 import Deals from "../../components/Deals";
 import { Wrapper } from "../../style";
@@ -99,6 +100,7 @@ function Home() {
             </div>
           </Wrapper>
         </div>
+        <Arrivals />
       </HomeSty>
     </>
   );
