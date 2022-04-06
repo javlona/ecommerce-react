@@ -17,6 +17,10 @@ p {
   margin-bottom: 0;
 }
 
+img {
+  /* width: 100%; */
+}
+
 button {
   border: none;
   outline: none;

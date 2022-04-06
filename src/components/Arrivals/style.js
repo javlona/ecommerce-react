@@ -32,6 +32,18 @@ const ArrivalsSty = sty.div`
             }
         }
     }
+    .arrivals__cards {
+        display: flex;
+        flex-wrap: wrap;
+        .arrivals__card {
+            display: flex;
+            flex-direction: column;
+            .card__img {
+                width: 200px;
+                
+            }
+        }
+    }
 `
 
 export default ArrivalsSty;
