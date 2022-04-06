@@ -42,8 +42,8 @@ function Home() {
                 </svg>
               </div>
               <div className="features__card-txt">
-                <h4>Free Shipping</h4>
-                <p>
+                <h4 className="features__card--title">Free Shipping</h4>
+                <p className="features__card--text">
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry.
                 </p>
@@ -66,8 +66,8 @@ function Home() {
                 </svg>
               </div>
               <div className="features__card-txt">
-                <h4>Money Back Guarantee</h4>
-                <p>
+                <h4 className='features__card--title'>Money Back Guarantee</h4>
+                <p className='features__card--text'>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry.
                 </p>
@@ -90,8 +90,8 @@ function Home() {
                 </svg>
               </div>
               <div className="features__card-txt">
-                <h4>24/7 Help Center</h4>
-                <p>
+                <h4 className='features__card--title'>24/7 Help Center</h4>
+                <p className='features__card--text'>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry.
                 </p>

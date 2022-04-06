@@ -21,9 +21,26 @@ const HomeSty = sty.div`
         }
     }
     .features {
+        margin-top: 50px;
         display: flex;
+        gap: 20px;
         &__card {
             display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            border: 1px solid ${color.title};
+            padding: 20px;
+            margin-right: 20px;
+            &-txt {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+            }
+            &--title {
+                font-weight: 500;
+            }
         }
     }
 `
