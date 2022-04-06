@@ -17,10 +17,6 @@ p {
   margin-bottom: 0;
 }
 
-img {
-  /* width: 100%; */
-}
-
 button {
   border: none;
   outline: none;
@@ -35,3 +31,4 @@ button {
   padding: 0 40px;
   width: 100%;
 }
+

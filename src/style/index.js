@@ -9,4 +9,5 @@ export const Wrapper = sty.div`
     display: ${props => props.display || 'block'};
     justify-content: ${props => props.jc || 'flex-start'};
     align-items: ${props => props.ai || 'flex-start'};
+    flex-direction: ${props => props.fd || 'row'};
 `;

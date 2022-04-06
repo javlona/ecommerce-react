@@ -1,6 +1,7 @@
 import React from "react";
 import Arrivals from "../../components/Arrivals";
 import Button from "../../components/Button";
+import {Input as Inp, Button as Btn} from 'antd'
 import Deals from "../../components/Deals";
 import { Wrapper } from "../../style";
 import color from "../../utils/color";
@@ -101,6 +102,17 @@ function Home() {
           </Wrapper>
         </div>
         <Arrivals />
+        <div className="home__newsletter">
+          <Wrapper display="flex" ai='center' jc='center' fd='column'>
+            <h3 className='home__newsletter--title'>Join Our Newsletter Now</h3>
+            <div className="home__newsletter--input">
+              <Inp.Group compact>
+                <Inp style={{ width: 'calc(100% - 200px)' }} placeholder="Enter your email address" type="email"/>
+                <Btn style={{ width: '200px', background: color.secondary, border: 'none'}} type="primary">Submit</Btn>
+              </Inp.Group>
+            </div>
+          </Wrapper>
+        </div>
       </HomeSty>
     </>
   );

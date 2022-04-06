@@ -43,6 +43,29 @@ const HomeSty = sty.div`
             }
         }
     }
+    .home__newsletter {
+        height: 400px;
+        background: ${color.text};
+        &--title {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 500;
+            margin-bottom: 100px;
+        }
+        .ant-input:hover {
+            border-color: ${color.secondary};
+        }
+        .ant-input:focus {
+            border-color: ${color.secondary};
+            box-shadow: 0 0 0 2px rgb(38, 38, 38 / 20%) !important;
+        }
+        &--input {
+            width: 100%;
+            input, button {
+                height: 60px;
+            }
+        }
+    }
 `
 //padding: 20px 50px 20px 100px;
 export default HomeSty;

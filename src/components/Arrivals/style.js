@@ -35,12 +35,29 @@ const ArrivalsSty = sty.div`
     .arrivals__cards {
         display: flex;
         flex-wrap: wrap;
+        gap: 20px;  
+        justify-content: space-around;
         .arrivals__card {
             display: flex;
             flex-direction: column;
-            .card__img {
-                width: 200px;
-                
+            .card {
+                &__img {
+                    width: 350px;
+                }
+                &__content {
+                    padding: 10px;
+                }
+                &__title-like {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    button {
+                        background: transparent;
+                        svg {
+                            font-size: 20px;
+                        }
+                    }
+                }
             }
         }
     }

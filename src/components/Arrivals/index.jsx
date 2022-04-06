@@ -2,10 +2,10 @@ import React from 'react'
 import { Wrapper } from "../../style";
 import ArrivalsSty from './style';
 import item from '../../assets/1.jpg'
-import { AiOutlineHeart } from 'react-icons/ai'
-
+import { AiOutlineHeart } from 'react-icons/ai';
 
 function Arrivals() {
+
   return (
     <ArrivalsSty>
       <Wrapper>
@@ -20,6 +20,56 @@ function Arrivals() {
             </ul>
           </div>
           <div className="arrivals__cards">
+            <div className="arrivals__card">
+              <img className="card__img" src={item} alt='product' />
+              <div className="card__content">
+                <div className="card__title-like">
+                  <p className="card__title">Sample Product</p>
+                  <button className='card__like'><AiOutlineHeart /></button>
+                </div>
+                <p className='card__price'>$49</p>
+              </div>
+            </div>
+            <div className="arrivals__card">
+              <img className="card__img" src={item} alt='product' />
+              <div className="card__content">
+                <div className="card__title-like">
+                  <p className="card__title">Sample Product</p>
+                  <button className='card__like'><AiOutlineHeart /></button>
+                </div>
+                <p className='card__price'>$49</p>
+              </div>
+            </div>
+            <div className="arrivals__card">
+              <img className="card__img" src={item} alt='product' />
+              <div className="card__content">
+                <div className="card__title-like">
+                  <p className="card__title">Sample Product</p>
+                  <button className='card__like'><AiOutlineHeart /></button>
+                </div>
+                <p className='card__price'>$49</p>
+              </div>
+            </div>
+            <div className="arrivals__card">
+              <img className="card__img" src={item} alt='product' />
+              <div className="card__content">
+                <div className="card__title-like">
+                  <p className="card__title">Sample Product</p>
+                  <button className='card__like'><AiOutlineHeart /></button>
+                </div>
+                <p className='card__price'>$49</p>
+              </div>
+            </div>
+            <div className="arrivals__card">
+              <img className="card__img" src={item} alt='product' />
+              <div className="card__content">
+                <div className="card__title-like">
+                  <p className="card__title">Sample Product</p>
+                  <button className='card__like'><AiOutlineHeart /></button>
+                </div>
+                <p className='card__price'>$49</p>
+              </div>
+            </div>
             <div className="arrivals__card">
               <img className="card__img" src={item} alt='product' />
               <div className="card__content">
