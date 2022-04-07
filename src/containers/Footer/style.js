@@ -7,6 +7,7 @@ const FooterSty = sty.div`
         display: flex;
         gap: 20px;
         text-align: left;
+        
     }
     .footer__title {
         color: ${color.title};
