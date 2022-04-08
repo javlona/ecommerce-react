@@ -7,13 +7,17 @@ const FooterSty = sty.div`
         display: flex;
         gap: 20px;
         text-align: left;
-        
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
     }
     .footer__title {
         color: ${color.title};
         font-weight: 400;
         font-size: 20px;
-        margin-bottom: 1rem;
+        margin: 1rem 0;
     }
     .footer__follow-icons {
         display: flex;
@@ -29,6 +33,19 @@ const FooterSty = sty.div`
             height: 40px;
             font-size: 22px;
             color: #fff;
+        }
+    }
+    .footer__copyright {
+        display: flex;
+        justify-content: space-between;
+        border-top: 1px solid #555;
+        padding-top: 20px;
+        &-contact {
+            a {
+                margin-right:15px;
+            }
+            margin-bottom: 20px;
+            
         }
     }
 `

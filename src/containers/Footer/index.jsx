@@ -16,27 +16,31 @@ function Footer() {
             <div className="footer__follow">
               <h4 className='footer__title'>Follow us</h4>
               <ul className="footer__follow-icons">
-                <Link to='/'><FaFacebookF /></Link>
-                <Link to='/'><SiInstagram /></Link>
-                <Link to='/'><FaLinkedinIn /></Link>
-                <Link to='/'><FaTwitter /></Link>
+                  <Link to='/'><FaFacebookF /></Link>
+                  <Link to='/'><SiInstagram /></Link>
+                  <Link to='/'><FaLinkedinIn /></Link>
+                  <Link to='/'><FaTwitter /></Link>
               </ul>
             </div>
           </li>
           <li className="footer__links-info">
             <h4 className='footer__title'>Information</h4>
-            <Link to='/profile'>Profile</Link>
-            <Link to='/'>About us</Link>
-            <Link to='/'>Contact</Link>
-            <Link to='/'>Address</Link>
-            <Link to='/'>Return Policy</Link>
+            <div className="links">
+              <Link to='/profile'>Profile</Link>
+              <Link to='/'>About us</Link>
+              <Link to='/'>Contact</Link>
+              <Link to='/'>Address</Link>
+              <Link to='/'>Return Policy</Link>
+            </div>
           </li>
           <li className="footer__links-returns">
             <h4 className='footer__title'>Returns</h4>
-            <Link to='/'>FAQs</Link>
-            <Link to='/'>Size Guide</Link>
-            <Link to='/'>Support</Link>
-            <Link to='/'>Sell with us</Link>
+            <div className="links">
+              <Link to='/'>FAQs</Link>
+              <Link to='/'>Size Guide</Link>
+              <Link to='/'>Support</Link>
+              <Link to='/'>Sell with us</Link>
+            </div>
           </li>
           <li className="footer__links-contact">
             <h4 className='footer__title'>Get in touch</h4>
@@ -44,7 +48,11 @@ function Footer() {
           </li>
         </ul>
         <div className="footer__copyright">
-
+          <div className="footer__copyright-contact">
+            <a>Status</a>
+            <a>Contact us</a>
+          </div>
+          <p>Copyright 	&#169; 2022, Javlon.net</p>
         </div>
       </Wrapper>
     </FooterSty>
