@@ -10,6 +10,7 @@ export default axios.create({
 
 axios.interceptors.request.use(config => {
     const token = store.getState().auth?.token || '';
+    console.log(token , 'token');
     config.headers.authorization = token ? `Bearer ${token}` : '';
     return config
 })
