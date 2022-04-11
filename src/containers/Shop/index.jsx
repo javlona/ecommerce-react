@@ -53,13 +53,16 @@ function Shop() {
     axios.post('./products', data)
       .then(response => {console.log(response)})
       .catch(err => {console.log(err)});
+    handleOk();
   };
+
   const onCatFinish = (values) => {
     console.log("Success:", values);
     axios.post('./categories', values)
       .then(response => {console.log(response)})
       .catch(err => {console.log(err)});
     form.setFieldsValue({name: ""});
+    handleCatOk();
   };
 
   const onFinishFailed = (errorInfo) => {
