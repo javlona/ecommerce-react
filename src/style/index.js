@@ -1,7 +1,7 @@
 import sty from "styled-components";
 
 export const Wrapper = sty.div`
-    max-width: ${props => props.maxWidth || '1400px'};
+    max-width: ${props => props.maxWidth || '1200px'};
     width: ${props => props.width || '100%'};
     height: ${props => props.height || '100%'};
     margin: 0 auto;
