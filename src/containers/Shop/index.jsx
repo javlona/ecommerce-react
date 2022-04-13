@@ -49,7 +49,19 @@ function Shop() {
   const onFinish = (values) => {
     console.log("Success:", values);
     const categoryName = cats.find(i => values.categoryId == i._id)
-    let data = {...values, categoryName: categoryName.name}
+    //let data = {...values, categoryName: categoryName.name}
+    let formData = new FormData();
+    formData.append("categoryName", categoryName.name);
+    formData.append("categoryId", values.categoryId);
+    formData.append("name", values.name);
+    formData.append("price", values.price);
+    formData.append("description", values.description);
+    formData.append("brand", values.brand);
+    formData.append("quantity", values.quantity);
+    formData.append("quantityType", values.quantityType);
+    formData.append("img", values.upload[0].originFileObj);
+
+
     axios.post('./products', data)
       .then(response => {console.log(response)})
       .catch(err => {console.log(err)});
@@ -85,6 +97,7 @@ function Shop() {
   return (
     <ShopSty>
       <Wrapper>
+
         <Breadcrumb>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>
@@ -95,7 +108,9 @@ function Shop() {
           </Breadcrumb.Item>
           <Breadcrumb.Item>An Application</Breadcrumb.Item>
         </Breadcrumb>
+
         <div className="shop__content">
+
           <div className="shop__category">
             <h4>Shop by categories</h4>
             <ul className="shop__cats">
@@ -104,23 +119,24 @@ function Shop() {
               <li>&rarr; Kids</li>
               <li>&rarr; Trending</li>
             </ul>
-          </div>
-          <div className="shop_cards">
             <div className="shop__action">
-              {user && (
-                <><Button
-                  title="Add product"
-                  type="secondary"
-                  onClick={ showModal }
+            {user && (
+              <><Button
+                title="Add product"
+                type="secondary"
+                onClick={ showModal }
+              />
+              <Button 
+                title="Add categories"
+                type="secondary"
+                onClick={ showCatModal }
                 />
-                <Button 
-                  title="Add categories"
-                  type="secondary"
-                  onClick={ showCatModal }
-                  />
-                </>
-              )}
+              </>
+            )}
             </div>
+          </div>
+
+          <div className="shop__modals">
             <Modal
               title="Add a product"
               visible={isAddModal}
@@ -242,6 +258,9 @@ function Shop() {
               </Form.Item>
             </Form>
             </Modal>
+          </div>
+          
+          <div className="shop_cards">
             <Card
               hoverable
               style={{ width: 240 }}
@@ -293,6 +312,7 @@ function Shop() {
               />
             </Card>
           </div>
+
         </div>
       </Wrapper>
     </ShopSty>
