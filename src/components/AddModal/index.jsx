@@ -4,7 +4,7 @@ import Button from "../Button";
 import React, {useState, useEffect} from 'react'
 import axios from '../../utils/axios';
 
-function AddModal({ isAddModal, setIsAddModal }) {
+function AddModal({ isAddModal, setIsAddModal, api }) {
     const [cats, setCats] = useState([]);
 
     useEffect(() => {
@@ -21,12 +21,12 @@ function AddModal({ isAddModal, setIsAddModal }) {
         setIsAddModal(false);
       };
     
-    const [api, contextHolder] = notification.useNotification();
+    // const [api, contextHolder] = notification.useNotification();
 
     const openNotification = () => {
         api.info({
         message: `Successfully`,
-        description: <p>Category added</p>,
+        description: <p>Product created</p>,
         });
     };
 
@@ -43,7 +43,7 @@ function AddModal({ isAddModal, setIsAddModal }) {
         formData.append("brand", values.brand);
         formData.append("quantity", values.quantity);
         formData.append("quantityType", values.quantityType);
-        formData.append("img", values.upload[0].originFileObj);
+        formData.append("img", values.upload[0]?.originFileObj);
     
         axios
           .post("./products", formData)
@@ -72,7 +72,6 @@ function AddModal({ isAddModal, setIsAddModal }) {
 
   return (
     <div>
-        { contextHolder }
         <Modal
               title="Add a product"
               visible={isAddModal}

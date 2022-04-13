@@ -38,7 +38,7 @@ function Shop() {
       .catch((error) => {
         console.log(error)
       })
-  }, []);
+  }, [isAddModal]);
 
   const [api, contextHolder] = notification.useNotification();
 
@@ -130,8 +130,8 @@ function Shop() {
           <div className="shop__modals">
             {isAddModal && <AddModal 
               setIsAddModal={ setIsAddModal } 
-              setFormSuccess={ setFormSuccess }
               isAddModal={ isAddModal }
+              api={ api }
               />}
             <Modal
               title="Add categories"
@@ -172,6 +172,7 @@ function Shop() {
             {
               products.map(product => (
                 <Card
+                  key={product._id}
                   hoverable
                   style={{ width: 240 }}
                   cover={<img alt="example" src={product.img ? product.img : suit} />}
