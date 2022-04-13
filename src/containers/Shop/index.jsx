@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Wrapper } from "../../style";
 import ShopSty from "./style";
 import { Breadcrumb } from "antd";
@@ -11,12 +11,13 @@ import {
   Button as Btn,
   Form,
   Input,
-  Upload,
   message,
   Select,
+  notification, 
+ 
 } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
 import axios from "../../utils/axios";
+import AddModal from "../../components/AddModal";
 
 function Shop() {
   const { Meta } = Card;
@@ -26,12 +27,29 @@ function Shop() {
 
   const [isAddModal, setIsAddModal] = useState(false);
   const [isCatModal, setIsCatModal] = useState(false);
-  const [cats, setCats] = useState([]);
-  const [formSuccess, setFormSuccess] = useState(false);
+  const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    axios.get("/categories").then((response) => setCats(response.data.payload));
-  }, [isAddModal]);
+    axios.get("/products")
+      .then((response) => {
+      console.log(response, 'products')
+      setProducts(response.data.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, []);
+
+  const [api, contextHolder] = notification.useNotification();
+
+  const openNotification = () => {
+    api.info({
+      message: `Successfully`,
+      description: <p>Category added</p>,
+    });
+  };
+
+  const formRef = useRef(null)
 
   const showModal = () => {
     setIsAddModal(true);
@@ -39,46 +57,13 @@ function Shop() {
   const showCatModal = () => {
     setIsCatModal(true);
   };
-
-  const handleOk = () => {
-    setIsAddModal(false);
-  };
+  
   const handleCatOk = () => {
     setIsCatModal(false);
   };
 
-  const handleCancel = () => {
-    setIsAddModal(false);
-  };
   const handleCatCancel = () => {
     setIsCatModal(false);
-  };
-
-  const onFinish = (values) => {
-    console.log("Success:", values);
-    const categoryName = cats.find((i) => values.categoryId == i._id);
-    //let data = {...values, categoryName: categoryName.name}
-    let formData = new FormData();
-    formData.append("categoryName", categoryName.name);
-    formData.append("categoryId", values.categoryId);
-    formData.append("name", values.name);
-    formData.append("price", values.price);
-    formData.append("description", values.description);
-    formData.append("brand", values.brand);
-    formData.append("quantity", values.quantity);
-    formData.append("quantityType", values.quantityType);
-    formData.append("img", values.upload[0].originFileObj);
-
-    axios
-      .post("./products", formData)
-      .then((response) => {
-        console.log(response);
-        setFormSuccess(true);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    handleOk();
   };
 
   const onCatFinish = (values) => {
@@ -86,35 +71,24 @@ function Shop() {
     axios
       .post("./categories", values)
       .then((response) => {
-        console.log(response);
+        openNotification()
       })
       .catch((err) => {
         console.log(err);
       });
-    form.setFieldsValue({ name: "" });
+      //formRef.current.resetFields({ name: "" });
+      console.log(formRef.current)
     handleCatOk();
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
   const onCatFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
-  };
-
-  const normFile = (e) => {
-    console.log("Upload event:", e);
-
-    if (Array.isArray(e)) {
-      return e;
-    }
-
-    return e && e.fileList;
   };
 
   return (
     <ShopSty>
       <Wrapper>
+        { contextHolder }
         <Breadcrumb>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>
@@ -154,112 +128,11 @@ function Shop() {
           </div>
 
           <div className="shop__modals">
-            <Modal
-              title="Add a product"
-              visible={isAddModal}
-              onOk={handleOk}
-              onCancel={handleCancel}
-            >
-              <Form
-                name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
-                initialValues={{ remember: true }}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                autoComplete="off"
-              >
-                <Form.Item
-                  label="Name"
-                  name="name"
-                  rules={[
-                    { required: true, message: "Please input product name!" },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-
-                <Form.Item
-                  label="Price"
-                  name="price"
-                  rules={[
-                    { required: true, message: "Please input product price!" },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-
-                <Form.Item
-                  label="Brand"
-                  name="brand"
-                  rules={[
-                    { required: true, message: "Please input product brand!" },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-
-                <Form.Item
-                  label="Quantity"
-                  name="quantity"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input product quantity!",
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-
-                <Form.Item
-                  label="Quantity type"
-                  name="quantity-type"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input product quantity type!",
-                    },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-
-                <Form.Item
-                  name="categoryId"
-                  label="Categories"
-                  rules={[
-                    { required: true, message: "Please select categories!" },
-                  ]}
-                >
-                  <Select placeholder="select categories">
-                    {cats.map((cat) => (
-                      <Option value={cat._id} key={cat._id}>
-                        {cat.name}
-                      </Option>
-                    ))}
-                  </Select>
-                </Form.Item>
-
-                <Form.Item
-                  name="upload"
-                  label="Upload"
-                  valuePropName="fileList"
-                  getValueFromEvent={normFile}
-                  extra=""
-                >
-                  <Upload name="logo" action="/upload.do" listType="picture">
-                    <Button icon={<UploadOutlined />}>Click to upload</Button>
-                  </Upload>
-                </Form.Item>
-
-                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                  <Btn type="primary" htmlType="submit">
-                    Submit
-                  </Btn>
-                </Form.Item>
-              </Form>
-            </Modal>
+            {isAddModal && <AddModal 
+              setIsAddModal={ setIsAddModal } 
+              setFormSuccess={ setFormSuccess }
+              isAddModal={ isAddModal }
+              />}
             <Modal
               title="Add categories"
               visible={isCatModal}
@@ -274,6 +147,7 @@ function Shop() {
                 onFinish={onCatFinish}
                 onFinishFailed={onCatFinishFailed}
                 autoComplete="off"
+                ref={ formRef }
               >
                 <Form.Item
                   label="Category name"
@@ -296,58 +170,20 @@ function Shop() {
 
           <div className="shop_cards">
             {
-
+              products.map(product => (
+                <Card
+                  hoverable
+                  style={{ width: 240 }}
+                  cover={<img alt="example" src={product.img ? product.img : suit} />}
+                >
+                  <Meta
+                    title={product.name}
+                    description={product.description}
+                  />
+                  <p>{'$' + product.price}</p>
+                </Card>
+              ))
             }
-            <Card
-              hoverable
-              style={{ width: 240 }}
-              cover={<img alt="example" src={suit} />}
-            >
-              <Meta
-                title="Europe Street beat"
-                description="www.instagram.com"
-              />
-            </Card>
-            <Card
-              hoverable
-              style={{ width: 240 }}
-              cover={<img alt="example" src={suit} />}
-            >
-              <Meta
-                title="Europe Street beat"
-                description="www.instagram.com"
-              />
-            </Card>
-            <Card
-              hoverable
-              style={{ width: 240 }}
-              cover={<img alt="example" src={suit} />}
-            >
-              <Meta
-                title="Europe Street beat"
-                description="www.instagram.com"
-              />
-            </Card>
-            <Card
-              hoverable
-              style={{ width: 240 }}
-              cover={<img alt="example" src={suit} />}
-            >
-              <Meta
-                title="Europe Street beat"
-                description="www.instagram.com"
-              />
-            </Card>
-            <Card
-              hoverable
-              style={{ width: 240 }}
-              cover={<img alt="example" src={suit} />}
-            >
-              <Meta
-                title="Europe Street beat"
-                description="www.instagram.com"
-              />
-            </Card>
           </div>
         </div>
       </Wrapper>
