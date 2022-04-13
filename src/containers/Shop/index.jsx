@@ -6,8 +6,16 @@ import { Card } from "antd";
 import suit from "../../assets/suit.jpg";
 import { useSelector } from "react-redux";
 import Button from "../../components/Button";
-import { Modal, Button as Btn, Form, Input, Upload, message, Select } from "antd";
-import { UploadOutlined } from '@ant-design/icons';
+import {
+  Modal,
+  Button as Btn,
+  Form,
+  Input,
+  Upload,
+  message,
+  Select,
+} from "antd";
+import { UploadOutlined } from "@ant-design/icons";
 import axios from "../../utils/axios";
 
 function Shop() {
@@ -19,11 +27,11 @@ function Shop() {
   const [isAddModal, setIsAddModal] = useState(false);
   const [isCatModal, setIsCatModal] = useState(false);
   const [cats, setCats] = useState([]);
+  const [formSuccess, setFormSuccess] = useState(false);
 
   useEffect(() => {
-    axios.get('/categories')
-      .then(response => setCats(response.data.payload))
-  }, [])
+    axios.get("/categories").then((response) => setCats(response.data.payload));
+  }, [isAddModal]);
 
   const showModal = () => {
     setIsAddModal(true);
@@ -48,7 +56,7 @@ function Shop() {
 
   const onFinish = (values) => {
     console.log("Success:", values);
-    const categoryName = cats.find(i => values.categoryId == i._id)
+    const categoryName = cats.find((i) => values.categoryId == i._id);
     //let data = {...values, categoryName: categoryName.name}
     let formData = new FormData();
     formData.append("categoryName", categoryName.name);
@@ -61,19 +69,29 @@ function Shop() {
     formData.append("quantityType", values.quantityType);
     formData.append("img", values.upload[0].originFileObj);
 
-
-    axios.post('./products', data)
-      .then(response => {console.log(response)})
-      .catch(err => {console.log(err)});
+    axios
+      .post("./products", formData)
+      .then((response) => {
+        console.log(response);
+        setFormSuccess(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     handleOk();
   };
 
   const onCatFinish = (values) => {
     console.log("Success:", values);
-    axios.post('./categories', values)
-      .then(response => {console.log(response)})
-      .catch(err => {console.log(err)});
-    form.setFieldsValue({name: ""});
+    axios
+      .post("./categories", values)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    form.setFieldsValue({ name: "" });
     handleCatOk();
   };
 
@@ -85,19 +103,18 @@ function Shop() {
   };
 
   const normFile = (e) => {
-    console.log('Upload event:', e);
-  
+    console.log("Upload event:", e);
+
     if (Array.isArray(e)) {
       return e;
     }
-  
+
     return e && e.fileList;
   };
 
   return (
     <ShopSty>
       <Wrapper>
-
         <Breadcrumb>
           <Breadcrumb.Item>Home</Breadcrumb.Item>
           <Breadcrumb.Item>
@@ -110,7 +127,6 @@ function Shop() {
         </Breadcrumb>
 
         <div className="shop__content">
-
           <div className="shop__category">
             <h4>Shop by categories</h4>
             <ul className="shop__cats">
@@ -120,19 +136,20 @@ function Shop() {
               <li>&rarr; Trending</li>
             </ul>
             <div className="shop__action">
-            {user && (
-              <><Button
-                title="Add product"
-                type="secondary"
-                onClick={ showModal }
-              />
-              <Button 
-                title="Add categories"
-                type="secondary"
-                onClick={ showCatModal }
-                />
-              </>
-            )}
+              {user && (
+                <>
+                  <Button
+                    title="Add product"
+                    type="secondary"
+                    onClick={showModal}
+                  />
+                  <Button
+                    title="Add categories"
+                    type="secondary"
+                    onClick={showCatModal}
+                  />
+                </>
+              )}
             </div>
           </div>
 
@@ -186,7 +203,10 @@ function Shop() {
                   label="Quantity"
                   name="quantity"
                   rules={[
-                    { required: true, message: "Please input product quantity!" },
+                    {
+                      required: true,
+                      message: "Please input product quantity!",
+                    },
                   ]}
                 >
                   <Input />
@@ -196,20 +216,27 @@ function Shop() {
                   label="Quantity type"
                   name="quantity-type"
                   rules={[
-                    { required: true, message: "Please input product quantity type!" },
+                    {
+                      required: true,
+                      message: "Please input product quantity type!",
+                    },
                   ]}
                 >
                   <Input />
                 </Form.Item>
-                  
+
                 <Form.Item
                   name="categoryId"
                   label="Categories"
-                  rules={[{ required: true, message: 'Please select categories!' }]}
+                  rules={[
+                    { required: true, message: "Please select categories!" },
+                  ]}
                 >
                   <Select placeholder="select categories">
-                    {cats.map(cat => (
-                      <Option value={cat._id} key={cat._id}>{cat.name}</Option>
+                    {cats.map((cat) => (
+                      <Option value={cat._id} key={cat._id}>
+                        {cat.name}
+                      </Option>
                     ))}
                   </Select>
                 </Form.Item>
@@ -233,34 +260,44 @@ function Shop() {
                 </Form.Item>
               </Form>
             </Modal>
-            <Modal title="Add categories" visible={isCatModal} onOk={handleCatOk} onCancel={handleCatCancel}>
-            <Form
-              name="basic"
-              labelCol={{ span: 8 }}
-              wrapperCol={{ span: 16 }}
-              initialValues={{ name: '' }}
-              onFinish={onCatFinish}
-              onFinishFailed={onCatFinishFailed}
-              autoComplete="off"
+            <Modal
+              title="Add categories"
+              visible={isCatModal}
+              onOk={handleCatOk}
+              onCancel={handleCatCancel}
             >
-              <Form.Item
-                label="Category name"
-                name="name"
-                rules={[{ required: true, message: 'Please input your name!' }]}
+              <Form
+                name="basic"
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+                initialValues={{ name: "" }}
+                onFinish={onCatFinish}
+                onFinishFailed={onCatFinishFailed}
+                autoComplete="off"
               >
-                <Input />
-              </Form.Item>
+                <Form.Item
+                  label="Category name"
+                  name="name"
+                  rules={[
+                    { required: true, message: "Please input your name!" },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
 
-              <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                <Btn type="primary" htmlType="submit">
-                  Submit
-                </Btn>
-              </Form.Item>
-            </Form>
+                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                  <Btn type="primary" htmlType="submit">
+                    Submit
+                  </Btn>
+                </Form.Item>
+              </Form>
             </Modal>
           </div>
-          
+
           <div className="shop_cards">
+            {
+
+            }
             <Card
               hoverable
               style={{ width: 240 }}
@@ -312,7 +349,6 @@ function Shop() {
               />
             </Card>
           </div>
-
         </div>
       </Wrapper>
     </ShopSty>
