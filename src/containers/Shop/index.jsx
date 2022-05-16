@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Wrapper } from "../../style";
 import ShopSty from "./style";
-import { Breadcrumb } from "antd";
-import { Card } from "antd";
 import suit from "../../assets/suit.jpg";
 import { useSelector } from "react-redux";
 import Button from "../../components/Button";
@@ -13,7 +11,10 @@ import {
   Input,
   message,
   Select,
-  notification
+  notification,
+  Breadcrumb,
+  Card, 
+  Drawer,
 } from "antd";
 import axios from "../../utils/axios";
 import AddModal from "../../components/AddModal";
@@ -27,11 +28,10 @@ function Shop() {
   const [isAddModal, setIsAddModal] = useState(false);
   const [isCatModal, setIsCatModal] = useState(false);
   const [products, setProducts] = useState([]);
-
+  
   useEffect(() => {
     axios.get("/products")
       .then((response) => {
-      console.log(response, 'products')
       setProducts(response.data.data)
       })
       .catch((error) => {
@@ -83,6 +83,18 @@ function Shop() {
   const onCatFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+  const addCartHandler = (id) => {
+    console.log(id);
+    axios
+      .post(`/cart/${id}/add`, {product: id, qty: 1})
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <ShopSty>
@@ -181,6 +193,10 @@ function Shop() {
                     description={product.description}
                   />
                   <p>{'$' + product.price}</p>
+                  <Button 
+                    title="Add to cart"
+                    type="secondary"
+                    />
                 </Card>
               ))
             }
