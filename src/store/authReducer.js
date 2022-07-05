@@ -35,6 +35,7 @@ export const authSlice = createSlice({
     },
   },
  
+  //necessarry builders
   extraReducers: (builder) => {
     builder
       .addCase(authSignUp.pending, (state) => {
