@@ -24,6 +24,7 @@ function Header() {
 
   const searchQueryHandler = (e) => { setQuery(e.target.value) }
 
+  //call redux function
   const searchHandler = (e) => {
     e.preventDefault();
     dispatch(searchReducer(query))
