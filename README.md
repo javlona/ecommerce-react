@@ -37,7 +37,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-#� �e�c�o�m�m�e�r�c�e�-�r�e�a�c�t�
-�
-�
